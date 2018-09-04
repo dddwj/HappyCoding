@@ -1,0 +1,2 @@
+[root@lawrence-anlyneil ~]# crontab -l
+0 18 */1 * * /root/mytest/jwc.sh
