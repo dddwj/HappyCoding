@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<!--<script type="text/javascript" src="js/jquery.js"></script>-->
+<script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+<h1>上传一张图片，自动进行OCR</h1>
+<input type="file" id="file" name="file" /></br>
+<br><br>
+<h2 id = "OCRResult"> </h2>
+<img id="canvasImg" src=""/>
+<canvas id="mycanvas"></canvas>
+<!--<style>-->
+    <!--#canvasImg {-->
+        <!--position: absolute;-->
+        <!--left: 0;-->
+        <!--top: 0;-->
+        <!--z-index: 1;-->
+        <!--visibility: hidden;-->
+    <!--}-->
+
+    <!--#mycanvas {-->
+        <!--position: absolute;-->
+        <!--left: 0;-->
+        <!--top: 0;-->
+        <!--z-index: 2;-->
+        <!--visibility: hidden;-->
+    <!--}-->
+<!--</style>-->
+
+<script>
+    var util = {
+        pathToFile: function(path) {
+            var canvasImg = document.getElementById("canvasImg");
+            var mycanvas = document.getElementById("mycanvas");
+            canvasImg.src = path;
+            var that = this;
+            //更换图片src时，要等图片加载完后再进行下一步操作
+            canvasImg.onload = function() {
+                //一定要等图片加载后再获得图片的大小，这样获得的就是图片的原生大小
+                //这里除以10 是因为图片较大的时候转换过程会变慢，但是图片会压缩
+                //canvas大小要和图片大小一样
+                var imgWidth = Math.round(canvasImg.width/10);
+                var imgHeight = Math.round(canvasImg.height/10);
+                mycanvas.setAttribute('width',imgWidth);
+                mycanvas.setAttribute('height',imgHeight);
+                var ctx = mycanvas.getContext("2d");
+                ctx.drawImage(canvasImg, 0, 0, imgWidth, imgHeight);
+                var uricode = mycanvas.toDataURL("images/png",1.0);
+                var blobs = that.urltoblob(uricode);
+                var namestr = that.workname + ".png";
+                var file = that.blobToFile(blobs,namestr);
+                that.editor.setImage(file);
+            }
+        },
+        urltoblob: function(dataURL){
+            var BASE64_MARKER = ';base64,';
+            if (dataURL.indexOf(BASE64_MARKER) == -1) {
+                var parts = dataURL.split(',');
+                var contentType = parts[0].split(':')[1];
+                var raw = decodeURIComponent(parts[1]);
+                return new Blob([raw], {type: contentType});
+            }
+            var parts = dataURL.split(BASE64_MARKER);
+            var contentType = parts[0].split(':')[1];
+            var raw = window.atob(parts[1]);
+            var rawLength = raw.length;
+            var uInt8Array = new Uint8Array(rawLength);
+            for (var i = 0; i < rawLength; ++i) {
+                uInt8Array[i] = raw.charCodeAt(i);
+            }
+            return new Blob([uInt8Array], {type: contentType});
+        },
+        blobToFile: function(theBlob, fileName){
+            theBlob.lastModifiedDate = new Date();
+            theBlob.name = fileName;
+            return theBlob;
+        }
+    }
+</script>
+
+<script>
+        var imgs = []; //存储图片链接
+        //为文件上传添加change事件
+        var fileM = document.querySelector("#file");
+        // var fileM = util.pathToFile(CodeUrl);
+        console.log(fileM);
+        $("#file").on("change", function() {
+            console.log(fileM.files);
+            var fileObj = fileM.files[0];
+            console.log("Click!");
+            console.log(fileObj);
+            var formData = new FormData();
+            formData.append('file', fileObj);
+            var ajax = new XMLHttpRequest();
+            ajax.open("POST", "http://101.132.154.2:5000/VerCodeAPI", true);
+            ajax.setRequestHeader('Access-Control-Allow-Origin', '*');
+            ajax.send(formData);
+            ajax.onreadystatechange = function() {
+                if(ajax.readyState == 4) {
+                    if(ajax.status >= 200 && ajax.status < 300 || ajax.status == 304) {
+                        console.log("上传成功");
+                        document.getElementById("OCRResult").innerText = ajax.responseText;
+                    }
+                }
+            }
+        });
+</script>
+<div class="con"></div>
+</body>
+
+</html>
+
