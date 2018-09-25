@@ -4,13 +4,15 @@ window.onload=function(){
         var xh, id_card;
         switch (xm) {
             case "董文杰":
-                xh = "10161858";
-                id_card = "0000";
+                xh = "";
+                id_card = "";
                 break;
             case "赵杰羽":
-                xh = "10161586";
-                id_card = "0000";
+                xh = "";
+                id_card = "";
                 break;
+            case "雷骏杰": xh = "";id_card = "";break;
+            case "刘熠珺": xh = "";id_card = "";break;
             default:
                 xh = "xxxxx";
                 id_card = "xxxxx";

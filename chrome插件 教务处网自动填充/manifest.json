@@ -1,10 +1,10 @@
 {
    "name": "Jwc Auto-Filler",
-   "version": "0.0.1",
-   "manifest_version": 2,
+   "version": "1.0.0",
+   "manifest_version": 3,
 
    // 简单描述
-   "description": "Auto Fill jwc.ecust website",
+   "description": "fill in inquiry.ecust.edu.cn login information automatically",
 
    "background": {
       "scripts": ["scripts/background.js"],
