@@ -72,7 +72,7 @@ function useAPI(objFile){
     var formData = new FormData();
     formData.append('file', objFile);
     var ajax = new XMLHttpRequest();        // 新的http post请求，发送.png文件，此处省略了文件后缀、恶意文件的检查。
-    ajax.open("POST", "http://101.132.154.2:5894/VerCodeAPI", true);
+    ajax.open("POST", "http://101.132.154.2:5000/VerCodeAPI", true);
     ajax.setRequestHeader('Access-Control-Allow-Origin', '*');
     ajax.send(formData);
     ajax.onreadystatechange = function() {
