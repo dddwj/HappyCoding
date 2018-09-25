@@ -1,21 +1,17 @@
-/*dddwj 2018-09-01*/
 $("body").append('<div style="text-align:center; "><button id="fillinBtn" style=" size: landscape; background-color: #E096EB; ">一键填充</button></div>');
-
-document.getElementById("fillinBtn").addEventListener("click",
-        chrome.storage.local.get(['xm','xh','id_card'], function(result) {
-            document.getElementById("xh").value = result.xh;
-            document.getElementById("xm").value = result.xm;
-            document.getElementById("id_card").value = result.id_card;
-            document.getElementById("RANDOMCODE").value = "error";
-        })
-);
-
 
 // canvas 和 img 用于将url转换到.png文件，可以不显示在网页上。
 $("body").append(' <img id="canvasImg" src=" " > <canvas id="mycanvas"></canvas>');
 $("body").append(' <style>#canvasImg {position: absolute;right: 60px; top: 0;z-index: 1;visibility: hidden; /* #mycanvas {position: absolute; left: 0; top: 0; z-index: 2; visibility: hidden;} */ </style>');
 
 $("#fillinBtn").on("click", function() {
+    chrome.storage.local.get(['xm','xh','id_card'], function(result) {
+        document.getElementById("xh").value = result.xh;
+        document.getElementById("xm").value = result.xm;
+        document.getElementById("id_card").value = result.id_card;
+        document.getElementById("RANDOMCODE").value = "error";
+    });
+
     var CodeUrl = document.getElementById("SafeCodeImg").src;
     var canvasImg = document.getElementById("canvasImg");
     var mycanvas = document.getElementById("mycanvas");
