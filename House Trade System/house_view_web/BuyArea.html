@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="cn-Zh" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>二手房交易平台</title>
+    <script src="node_modules/jquery/dist/jquery.js" charset="utf-8"></script>
+    <script src="node_modules/popper.js/dist/umd/popper.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="node_modules/bootstrap-submenu/dist/css/bootstrap-submenu.css">
+    <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.css">
+    <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="node_modules/bootstrap-submenu/dist/js/bootstrap-submenu.js"></script>
+
+</head>
+<style type="text/css">
+    fieldset {
+        padding: .35em .625em .75em;
+        margin: 0 2px;
+        border: 1px solid silver
+    }
+
+    legend {
+        padding: .5em;
+        border: 0;
+        width: auto
+    }
+</style>
+<script type="text/javascript">
+    $(function () {
+        $('[data-submenu]').submenupicker();
+    });
+</script>
+
+
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">二手房交易平台</a>
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+          <ul class="navbar-nav">
+              <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="BuyDisk.html" id="navbarDropdown" role="button"
+                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <span class="fa fa-search"></span>
+                      我要买房!
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="BuyDisk.html">
+                          <span class="fa fa-search-plus"></span>
+                          直接搜小区
+                      </a>
+                      <a class="dropdown-item" href="BuyArea.html">
+                          <span class="fa fa-search-minus"></span>
+                          按区域找房
+                      </a>
+                  </div>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="Sale.html">
+                      <i class="fa fa-gavel"></i>我要卖房!
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#">
+                      <i class="fa fa-info"></i>
+                      帮助
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a id="userLabel" class="nav-link" href="index.html">
+                      <i class="fa fa-user-circle"></i>
+                      登录
+                  </a>
+              </li>
+              <script>
+
+              function userControl() {
+               let userName = sessionStorage.getItem('userName');
+               if(userName == null){
+                      console.log("login first");
+              }
+              else{
+              // alert(userName);
+              var label = $("#userLabel");
+              label.html("<i class=\"fa fa-user\"></i>" + userName);
+              label[0].setAttribute("data-toggle", "modal");
+              label[0].setAttribute("data-target", "#resultModal");
+              }
+              }
+
+              userControl();
+
+              </script>
+
+              <!--<li v-if="auth" class="nav-item">-->
+              <!--<a class="nav-link" onclick="alert('欢迎使用！');">-->
+              <!--<i class="fa fa-user-circle"></i>-->
+              <!--{{ userName }}-->
+              <!--</a>-->
+              <!--<li v-else class="nav-item">-->
+              <!--<a class="nav-link" data-toggle="modal" data-target="#loginModal">-->
+              <!--<i class="fa fa-user-circle"></i>-->
+              <!--登录-->
+              <!--</a>-->
+              <!--</li>-->
+          </ul>
+      </div>
+</nav>
+
+
+<div class="container-fluid" id='app'>
+
+</div>
+
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" data-submenu=""
+            aria-expanded="false">
+        请选取板块
+    </button>
+
+    <div class="dropdown-menu" x-placement="bottom-start"
+         style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
+        <div class="dropdown dropright dropdown-submenu">
+            <button class="dropdown-item dropdown-toggle" type="button" data-toggle="dropdown">浦东</button>
+
+
+            <div class="dropdown-menu">
+                <button class="dropdown-item" type="button">北蔡</button>
+                <button class="dropdown-item" type="button">花木</button>
+                <button class="dropdown-item" type="button"></button>
+
+                <div class="dropdown dropright dropdown-submenu">
+                    <button class="dropdown-item dropdown-toggle" type="button">其它</button>
+
+                    <div class="dropdown-menu">
+                        <button class="dropdown-item" type="button">Sub action</button>
+                        <button class="dropdown-item" type="button">Another sub action</button>
+                        <button class="dropdown-item" type="button">Something else here</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dropdown dropright dropdown-submenu">
+            <button class="dropdown-item dropdown-toggle" type="button" data-toggle="dropdown">浦东</button>
+            <div class="dropdown-menu">
+                <b>B</b>
+                <button class="dropdown-item" type="button">北蔡</button>
+                <button class="dropdown-item" type="button">碧云</button>
+                <b>C</b>
+                <button class="dropdown-item" type="button">曹路</button>
+                <button class="dropdown-item" type="button">川沙</button>
+                <b>D</b>
+                <button class="dropdown-item" type="button">大团镇</button>
+                <b>G</b>
+                <button class="dropdown-item" type="button">合庆</button>
+                <button class="dropdown-item" type="button">高行</button>
+                <button class="dropdown-item" type="button">高东</button>
+                <b>H</b>
+                <button class="dropdown-item" type="button">花木</button>
+                <button class="dropdown-item" type="button">航头</button>
+                <button class="dropdown-item" type="button">惠南</button>
+                <b>J</b>
+                <button class="dropdown-item" type="button">金桥</button>
+                <button class="dropdown-item" type="button">金杨</button>
+                <b>K</b>
+                <button class="dropdown-item" type="button">康桥</button>
+                <b>L</b>
+                <button class="dropdown-item" type="button">陆家嘴</button>
+                <button class="dropdown-item" type="button">老港镇</button>
+                <button class="dropdown-item" type="button">临港新城</button>
+                <button class="dropdown-item" type="button">联洋</button>
+                <b>N</b>
+                <button class="dropdown-item" type="button">泥城镇</button>
+                <button class="dropdown-item" type="button">南码头</button>
+                <b>S</b>
+                <button class="dropdown-item" type="button">三林</button>
+                <button class="dropdown-item" type="button">世博</button>
+                <button class="dropdown-item" type="button">书院镇</button>
+                <b>T</b>
+                <button class="dropdown-item" type="button">塘桥</button>
+                <button class="dropdown-item" type="button">唐镇</button>
+                <b>W</b>
+                <button class="dropdown-item" type="button">外高桥</button>
+                <button class="dropdown-item" type="button">万祥镇</button>
+                <button class="dropdown-item" type="button">潍坊</button>
+                <b>X</b>
+                <button class="dropdown-item" type="button">宣桥</button>
+                <button class="dropdown-item" type="button">新场</button>
+                <b>Y</b>
+                <button class="dropdown-item" type="button">御桥</button>
+                <button class="dropdown-item" type="button">杨东</button>
+                <button class="dropdown-item" type="button">源深</button>
+                <button class="dropdown-item" type="button">洋泾</button>
+                <b>Z</b>
+                <button class="dropdown-item" type="button">张江</button>
+                <button class="dropdown-item" type="button">祝桥</button>
+                <button class="dropdown-item" type="button">周浦</button>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+server:
+  port: 8090  # 配置端口
+  tomcat.max-threads: 0
+  tomcat.uri-encoding: UTF-8
+  servlet:
+    session:
+      cookie:
+#        max-age:
+        http-only: true
+      timeout: 30m
+
+
+spring:
+  # 数据库配置
+  datasource:
+    url: jdbc:mysql://101.132.154.2:3306/house_trade?useUnicode=true&characterEncoding=utf-8
+    username: housing
+    password: housing
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  redis:
+      # redis数据库索引（默认为0），我们使用索引为3的数据库，避免和其他数据库冲突
+      database: 3
+      # redis服务器地址（默认为localhost）
+      host: localhost
+      # redis端口（默认为6379）
+      port: 6379
+      # redis访问密码（默认为空）
+      password:
+      # redis连接超时时间（单位为毫秒）
+#      timeout: 0
+      # redis连接池配置
+#      pool:
+        # 最大可用连接数（默认为8，负数表示无限）
+#        max-active: 8
+        # 最大空闲连接数（默认为8，负数表示无限）
+#        max-idle: 8
+        # 最小空闲连接数（默认为0，该值只有为正数才有作用）
+#        min-idle: 0
+        # 从连接池中获取连接最大等待时间（默认为-1，单位为毫秒，负数表示无限）
+#        max-wait: -1
+
+#####配置jsp网页。
+  mvc:
+    view:
+      prefix: /WEB-INF/view/
+      suffix: .jsp
+
+# mybatis配置
+mybatis:
+  # 配置映射类所在包名
+  # 配置mapper xml文件所在路径，这里是一个数组
+  mapper-locations:
+      - mappers/*Mapper.xml
+#      - mappers/HouseMapper.xml
+  type-aliases-package: com.ecust.house.model

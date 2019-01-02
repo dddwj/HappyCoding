@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ecust.house.dao.HouseMapper">
+
+     <!--开启基于redis的二级缓存 -->
+    <!--flushCache="true"-->
+    <!--<cache type="com.ecust.house.util.RedisCache"/>-->
+
+    <select id="selectHouseById" resultType="com.ecust.house.model.House">
+        SELECT id, address, total FROM guapai_201803 WHERE id = #{id} LIMIT 1
+    </select>
+
+
+    <!--注意中文参数的写法！-->
+    <!--<select id="selectHouseByXiaoqu" resultType="House">-->
+        <!--select id, address, total from guapai_201803 where xiaoqu like '${xiaoqu}%'-->
+    <!--</select>-->
+
+</mapper>

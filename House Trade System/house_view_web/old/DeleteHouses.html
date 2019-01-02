@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="cn-Zh" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="vue.js" charset="utf-8"></script>
+    <script src="node_modules/popper.js/dist/umd/popper.js" charset="utf-8"></script>
+
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="node_modules/bootstrap-table/dist/bootstrap-table.css">
+    <script src="node_modules/jquery/dist/jquery.js" charset="utf-8"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="node_modules/bootstrap-table/dist/bootstrap-table.js" type="text/javascript" charset="utf-8"></script>
+    <script src="node_modules/bootstrap-table/dist/locale/bootstrap-table-zh-CN.js" type="text/javascript" charset="utf-8"></script>
+    <!-- 先查询，再删除 -->
+  </head>
+  
+  <body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+      <!-- Brand -->
+      <a class="navbar-brand" href="FindHouses.html">房屋查询系统</a>
+
+      <!-- Links -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="FindHouses.html">按小区查找</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="InsertHouses.html">添加房屋</a>
+        </li>
+
+        <!-- Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+            管理房屋
+          </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="DeleteHouses.html">删除房屋</a>
+            <a class="dropdown-item" href="#">修改房屋</a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+
+
+    <div class="container-fluid" id='app'>
+        <br>
+        <h2>属于 {{ DiskName }} 的房源</h2>
+        <br>
+        <div>
+           <input v-model="DiskName" class="form-control col-6" v-on:input='changeDiskName'>
+          <button v-on:click='showData' class="btn btn-primary col-4">查询小区里的房子</button>
+        </div>
+
+      <div v-bind:class="{'alert alert-warning': message.length>0}" >{{message}}
+      </div>
+      <div class="table-box" style="margin: 20px;">
+      <div id="toolbar">
+          <button id="insertBtn" class="btn btn-success">insertRow</button>
+          <button id="getTableData" class="btn btn-warning">getTableData</button>
+          <button id="deleteBtn" class='btn btn-danger'>deleteRow</button>
+      </div>
+      <table id="table"></table>
+      </div>
+    </div>
+
+
+    <script type="text/javascript">
+
+      // 已经有单独的插入界面了，不需要再有此按钮了。但功能在这里依然是完整的。
+      document.getElementById("insertBtn").style.display="none";
+      
+      new Vue ({
+        el: '#app',
+        data:{
+          DiskName: "耀江花园",
+          datas: [],
+          datasToRemove: [],
+          message: ""
+        },
+        methods:{
+          changeDiskName:function(event) {
+              this.text = event.target.value;
+          },
+          showData:function(event){
+              var api = 'http://127.0.0.1:8090/selectByXiaoqu/';
+              var url_api = api + this.DiskName;
+              console.log("### REQUEST: " + url_api);
+              
+              var vm = this;  // 把this传入vm供ajax使用，在ajax内部使用this会出错！
+              $.ajax({
+                url: url_api,
+                dataType: "json",
+                type:"post",
+                success: function(response){
+                    $(function() {
+                        let $table = $('#table');
+                        let $button = $('#insertBtn');
+                        let $getTableData = $('#getTableData');
+                        let $deleteBtn = $('#deleteBtn');
+
+                        $button.click(function(){
+                            $table.bootstrapTable('insertRow', {
+                                index: 0,
+                                row: {
+                                    id: '',
+                                    address: '',
+                                    name: '',
+                                    price: ''
+                                }
+                            });
+                        });
+
+                        $table.bootstrapTable({
+                            // toolbar: '#toolbar',
+                            search: true,
+                            searchOnEnterKey: true,
+                            clickEdit: false,
+                            pagination: true,       //显示分页条
+                            showColumns: true,
+                            showPaginationSwitch: true,     //显示切换分页按钮
+                            showRefresh: true,      //显示刷新按钮
+                            clickToSelect: true,  //点击row选中radio或CheckBox
+                            showToggle: true,
+                            columns: [{
+                                checkbox: true
+                            }, {
+                                field: 'id',
+                                title: 'ID'
+                            }, {
+                                field: 'diskName',
+                                title: '小区名称'
+                            }, {
+                                field: 'address',
+                                title: '地址'
+                            }, {
+                                field: 'total',
+                                title: '总价'
+                            }, {
+                              // 在bootstrap table中添加按钮，暂时还不能用。
+                                field: 'Button',
+                                title: '操作',
+                                formatter: AddFunctionAlty,
+                            }],
+                            
+                            onClickCell: function(field, value, row, $element) {
+                                $element.attr('contenteditable', true);
+                                $element.blur(function() {
+                                    let index = $element.parent().data('index');
+                                    let tdValue = $element.html();
+
+                                    saveData(index, field, tdValue);
+                                })
+                            }
+                        });
+                        $table.bootstrapTable('load', response);
+
+                        $getTableData.click(function() {
+                            alert(JSON.stringify($table.bootstrapTable('getData')));
+                        });
+
+                        $deleteBtn.click(function(){
+                          vm.datasToRemove = [];
+                          var datasChosen = $table.bootstrapTable("getSelections");
+                          for(var i=0; i<datasChosen.length;i++){
+                            vm.datasToRemove.push(datasChosen[i]["id"]);
+                          };
+                          vm.deleteData(vm.datasToRemove);
+                        })
+
+                        function saveData(index, field, value) {
+                            $table.bootstrapTable('updateCell', {
+                                index: index,       //行索引
+                                field: field,       //列名
+                                value: value        //cell值
+                            })
+                        };
+
+                        function AddFunctionAlty(value,row,index){
+                          return[
+                          '<button id="TableEditor" type="button" class="btn btn-dafault">编辑</button> &nbsp;&nbsp;',
+                          '<button id="TableDelete" type="button" class="btn btn-default">删除</button>'
+                          ].join("");
+                        };
+
+                        $("#TableEditor").click(function(e,value,row,index){
+                        });
+
+                        $("#TableDelete").click(function(e,value,row,index){
+                        })
+
+                    });
+                  
+                },
+                error: function(res){
+                  console.log("ERROR!!!!!" + res.text);
+                  vm.make_message("服务器发生错误：" + res.text);
+                }
+              });
+          },
+          deleteData:function(datasToRemove){
+            var api = 'http://127.0.0.1:8090/deleteById/';
+            var url_api = api;
+            console.log("### REQUEST: " + url_api); 
+
+            var datasToRemove_json ={};
+            for(var i = 0; i < this.datasToRemove.length; i++){
+                datasToRemove_json[i] = {};
+                datasToRemove_json[i]['id'] = this.datasToRemove[i];
+            }
+            // console.log(JSON.stringify(datasToRemove_json));
+
+            var vm = this;
+            $.ajax({
+              url: url_api,
+              dataType: "json",
+              type:"post",
+              data: JSON.stringify(datasToRemove_json),
+              contentType: "application/json",
+              success: function(response){
+                console.log("删除成功！");
+                vm.make_message("删除成功！");
+                vm.showData();  // 更新表格
+              },
+              error: function(response){
+                vm.make_message("服务器发生错误: " + response.text);
+              }
+
+            });
+          },
+          make_message: function(text){
+            this.message = text;
+          },
+          deleteSelectedData: function(value,row,index){
+            console.log(value);
+            console.log(row);
+            console.log(index);
+          }
+          
+        }
+      });
+
+      // window.operateEvents = {
+      //     "click #TableEditor":function(e,value,row,index){
+            
+      //     },
+      //     "click #TableDelete":function(e,value,row,index){
+      //       // $(this).parent().parent().remove();
+
+      //       alert("TableDelete");
+      //     }
+      //   }
+
+    </script>
+  </body>
+</html>

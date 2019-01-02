@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="cn-Zh" dir="ltr">
+  <head>
+        <meta charset="utf-8">
+        <title>二手房交易平台</title>
+        <script src="vue.js" charset="utf-8"></script>
+        <script src="node_modules/jquery/dist/jquery.js" charset="utf-8"></script>
+        <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.css">
+        <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+  </head>
+  <style type="text/css">
+    fieldset{padding:.35em .625em .75em;margin:0 2px;border:1px solid silver}
+    legend{padding:.5em;border:0;width:auto}
+  </style>
+
+
+  <body>
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">二手房交易平台</a>
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+          <ul class="navbar-nav">
+              <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="BuyDisk.html" id="navbarDropdown" role="button"
+                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <span class="fa fa-search"></span>
+                      我要买房!
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="BuyDisk.html">
+                          <span class="fa fa-search-plus"></span>
+                          直接搜小区
+                      </a>
+                      <a class="dropdown-item" href="BuyArea.html">
+                          <span class="fa fa-search-minus"></span>
+                          按区域找房
+                      </a>
+                  </div>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="Sale.html">
+                      <i class="fa fa-gavel"></i>我要卖房!
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#">
+                      <i class="fa fa-info"></i>
+                      帮助
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a id="userLabel" class="nav-link" href="index.html">
+                      <i class="fa fa-user-circle"></i>
+                      登录
+                  </a>
+              </li>
+              <script>
+
+              function userControl() {
+               let userName = sessionStorage.getItem('userName');
+               if(userName == null){
+                      console.log("login first");
+              }
+              else{
+              // alert(userName);
+              var label = $("#userLabel");
+              label.html("<i class=\"fa fa-user\"></i>" + userName);
+              label[0].setAttribute("data-toggle", "modal");
+              label[0].setAttribute("data-target", "#resultModal");
+              }
+              }
+
+              userControl();
+
+              </script>
+
+              <!--<li v-if="auth" class="nav-item">-->
+              <!--<a class="nav-link" onclick="alert('欢迎使用！');">-->
+              <!--<i class="fa fa-user-circle"></i>-->
+              <!--{{ userName }}-->
+              <!--</a>-->
+              <!--<li v-else class="nav-item">-->
+              <!--<a class="nav-link" data-toggle="modal" data-target="#loginModal">-->
+              <!--<i class="fa fa-user-circle"></i>-->
+              <!--登录-->
+              <!--</a>-->
+              <!--</li>-->
+          </ul>
+      </div>
+  </nav>
+    
+  <script type="text/javascript">
+      
+
+      function userControl() {
+          let userName = sessionStorage.getItem('userName');
+          if(userName == null){
+              alert("你没有权限，登录后才能挂牌！");
+              window.location = "index.html";
+          }
+          else{
+              alert("欢迎你来挂牌，" + userName);
+              var label = $("#userLabel");
+              label.html("<i class=\"fa fa-user\"></i>" + userName); // jquery用法
+              label[0].setAttribute("data-toggle", "modal");
+              label[0].setAttribute("data-target", "#resultModal");
+          }
+      }
+      userControl();
+  </script>
+    <div class="container-fluid" id='app'>
+        <div id="userID" class="h2">用户账号: </div>
+        <fieldset class="col-5">
+          <legend>挂牌</legend>
+          <div class="form-horizontal">
+            <div class="form-group">
+            <label class="control-label">小区名称</label>
+            <input v-model="diskName" class="form-control">
+            </div>
+            <button class="btn btn-default" v-on:click='findDiskID'>在系统中确认此小区</button>
+          </div>
+        <div class="form-horizontal">
+          <div class="form-group" hidden="true">
+            <label class="control-label">ID编号(大于5位数)</label>
+            <input v-model="diskID" class="form-control">
+          </div>
+          <div class="form-group">
+            <label class="control-label">地址</label>
+            <input v-model="diskName_address" class="form-control">
+          </div>
+            <div class="form-group">
+                <label class="control-label">室号</label>
+                <input v-model="address" class="form-control">
+            </div>
+          <div class="form-group">
+            <label class="control-label">面积</label>
+            <input v-model="acreage" class="form-control">
+          </div>
+          <div class="form-group">
+            <label class="control-label">总价(万)</label>
+            <input v-model="total" class="form-control">
+          </div>
+          <div class="form-group">
+            <label class="control-label">朝向</label>
+            <input v-model="direction" class="form-control">
+          </div>
+          <div class="row mt-1">
+          <button v-on:click='insertData' class="btn btn-default col-4">添加一行</button>
+          <button v-on:click='cancel' class="btn btn-warning col-4">清空数据</button>
+          <button v-if="couldInsert" v-on:click='insertNow' class="btn btn-info col-4">挂牌！</button>
+          </div>
+        </div>
+        </fieldset>
+
+        <div class="alert alert-success" v-show="successInsert" >成功了！您的房源唯一识别号为 {{ houseID }}。随时会有买家联系您，敬请关注网站的最新消息！</div>
+        <p v-bind:class="{'alert':errorOccur, 'alert-danger': errorOccur}">{{errorMessage}}</p>
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <!-- <th hidden="true">ID</th> -->
+              <th>小区名称</th>
+              <th>地址</th>
+              <th>面积</th>
+              <th>朝向</th>
+              <th>总价(万)</th>
+            </thead>
+            <tbody v-if="datas.length > 0" v-for="r in datas">
+              <tr>
+                <!-- <td v-text="r.id"></td> -->
+                <td v-text="r.diskName"></td>
+                <td v-text="r.address"></td>
+                <td v-text="r.acreage"></td>
+                <td v-text="r.direction"></td>
+                <td v-text="r.total"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+          function onload() {
+            let value = document.cookie.split(";")[0].split("=")[1];
+            $("#userID")[0].innerText = "用户账号: " + value  + ", " + sessionStorage.getItem('userName');
+          };
+          onload();
+      </script>
+
+
+    <script type="text/javascript">
+      new Vue ({
+        el: '#app',
+        data:{
+          diskName: "",
+            diskID: "",
+          address: "",
+          userID: "",
+          total: "",
+            diskName_address: "",   // 将来用于存address
+          datas: [],
+          acreage: 0,
+          errorMessage: "",
+          successInsert: false,
+          errorOccur: false,
+          couldInsert: false,
+          direction: "",
+            houseID: -1
+        },
+        methods:{
+          insertData: function(event){
+            var row = {
+              userID: document.cookie.split(";")[0].split("=")[1],
+              diskName: this.diskName.toString(),
+              address: this.address.toString(),
+              total: this.total.toString() + "0000",
+              acreage: this.acreage.toString(),
+              direction: this.direction.toString(),
+                diskID: this.diskID.toString()
+                // room: this.room.toString()
+            };
+            this.datas.push(row);
+          },
+          cancel: function(event){
+            this.datas = [];
+            couldInsert = false;
+          },
+
+          insertNow: function(event){
+            this.successInsert = false;
+            if(this.datas.length <= 0){
+              this.errorOccur = true;
+              this.errorMessage = "请至少添加一条数据！";
+              return;
+            }
+            else{
+              var api = 'http://localhost:8090/insertGuapai';
+              var url_api = api;
+              console.log("### REQUEST: " + url_api);
+              this.errorOccur = false;
+              this.errorMessage = "";
+              console.log(JSON.stringify(this.datas));
+
+              var json = {};
+              for(var i = 0; i < this.datas.length; i++){
+                if(this.datas[i].diskName === ""){
+                  this.errorMessage = "小区名称不能为空！";
+                  this.errorOccur = true;
+                }
+                json[i] = {};
+                json[i]['userID'] = this.datas[i].userID;
+                json[i]['diskName'] = this.datas[i].diskName;
+                json[i]['address'] = this.datas[i].address;
+                json[i]['total'] = this.datas[i].total;
+                json[i]['direction'] = this.datas[i].direction;
+                json[i]['acreage'] = this.datas[i].acreage;
+                json[i]['diskID'] = this.datas[i].diskID;
+
+              }
+              var vm = this;
+              $.ajax({
+                url: url_api,
+                dataType: "json", // 返回值是json格式
+                type: "post",
+                data: JSON.stringify(json),
+                contentType: "application/json",
+                success: function(response){
+                  vm.successInsert = true;
+                  vm.houseID = response['data'];
+                },
+                error: function(res){
+                  vm.errorOccur = true;
+                  vm.errorMessage = "服务器错误: " + JSON.stringify(res);
+                }
+              });
+            }
+          },
+
+          findDiskID: function(event){
+            let DiskName = this.diskName;
+            var json = {};
+            json['DiskName'] = DiskName;
+
+            var vm = this;
+            $.ajax({
+              url: "http://localhost:8090/selectDiskID",
+              dataType: "json",
+              type: "post",
+              data: JSON.stringify(json),
+              contentType: "application/json",
+              success: function(response){
+                 let res = response['diskID'];
+                if(res === "Not Found!")
+                  alert("小区不存在！");
+                else{
+                    console.log(response);
+                    alert("小区编号：" + res);
+                    vm.diskID = res;
+                    vm.diskName_address = DiskName;
+                }
+              },
+              error: function(res){
+                vm.errorOccur = true;
+                vm.errorMessage = "服务器错误: " + JSON.stringify(res);
+              }
+            });
+          }
+        },
+        watch:{
+          datas: function(val,oldval){
+            if(this.datas.length > 0){
+              this.couldInsert = true;
+            }
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

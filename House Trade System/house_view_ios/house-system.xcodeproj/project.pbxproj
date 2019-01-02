@@ -1,0 +1,669 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F400F58621D4836200A249FD /* ECUSTSearchHouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F400F58521D4836200A249FD /* ECUSTSearchHouseViewController.m */; };
+		F400F58F21D4A2B100A249FD /* ECUSTHouseResultTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F400F58E21D4A2B100A249FD /* ECUSTHouseResultTableViewController.m */; };
+		F4041F6521D3B2A900350170 /* ECUSTLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4041F6421D3B2A900350170 /* ECUSTLoginViewController.m */; };
+		F40E874521D5275A00034C6C /* HouseItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F40E874421D5275A00034C6C /* HouseItem.m */; };
+		F40E874F21D5582C00034C6C /* house.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F40E874E21D5582C00034C6C /* house.jpg */; };
+		F40E875221D55E6B00034C6C /* ECUSTMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F40E875121D55E6B00034C6C /* ECUSTMainViewController.m */; };
+		F442FBF821D5C158005088F7 /* UserEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = F442FBF721D5C158005088F7 /* UserEntity.m */; };
+		F442FBFF21D5DC67005088F7 /* ECUSTEditHouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F442FBFE21D5DC67005088F7 /* ECUSTEditHouseViewController.m */; };
+		F442FC0221D60546005088F7 /* DiskEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = F442FC0121D60546005088F7 /* DiskEntity.m */; };
+		F442FC0D21D606C9005088F7 /* ECUSTSellHouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F442FC0C21D606C9005088F7 /* ECUSTSellHouseViewController.m */; };
+		F442FC1021D60E69005088F7 /* ECUSTSellDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F442FC0F21D60E69005088F7 /* ECUSTSellDetailViewController.m */; };
+		F450169821D354C10064BA9F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F450169721D354C10064BA9F /* AppDelegate.m */; };
+		F450169E21D354C10064BA9F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F450169C21D354C10064BA9F /* Main.storyboard */; };
+		F45016A021D354C10064BA9F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F450169F21D354C10064BA9F /* Assets.xcassets */; };
+		F45016A621D354C10064BA9F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F45016A521D354C10064BA9F /* main.m */; };
+		F45016B021D354C10064BA9F /* house_systemTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F45016AF21D354C10064BA9F /* house_systemTests.m */; };
+		F45016BB21D354C10064BA9F /* house_systemUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = F45016BA21D354C10064BA9F /* house_systemUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F45016AC21D354C10064BA9F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F450168B21D354C10064BA9F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F450169221D354C10064BA9F;
+			remoteInfo = "house-system";
+		};
+		F45016B721D354C10064BA9F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F450168B21D354C10064BA9F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F450169221D354C10064BA9F;
+			remoteInfo = "house-system";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F400F58421D4836200A249FD /* ECUSTSearchHouseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ECUSTSearchHouseViewController.h; sourceTree = "<group>"; };
+		F400F58521D4836200A249FD /* ECUSTSearchHouseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ECUSTSearchHouseViewController.m; sourceTree = "<group>"; };
+		F400F58D21D4A2B100A249FD /* ECUSTHouseResultTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ECUSTHouseResultTableViewController.h; sourceTree = "<group>"; };
+		F400F58E21D4A2B100A249FD /* ECUSTHouseResultTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ECUSTHouseResultTableViewController.m; sourceTree = "<group>"; };
+		F4041F6321D3B2A900350170 /* ECUSTLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ECUSTLoginViewController.h; sourceTree = "<group>"; };
+		F4041F6421D3B2A900350170 /* ECUSTLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ECUSTLoginViewController.m; sourceTree = "<group>"; };
+		F40E874321D5275A00034C6C /* HouseItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseItem.h; sourceTree = "<group>"; };
+		F40E874421D5275A00034C6C /* HouseItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseItem.m; sourceTree = "<group>"; };
+		F40E874E21D5582C00034C6C /* house.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = house.jpg; sourceTree = "<group>"; };
+		F40E875021D55E6B00034C6C /* ECUSTMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ECUSTMainViewController.h; sourceTree = "<group>"; };
+		F40E875121D55E6B00034C6C /* ECUSTMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ECUSTMainViewController.m; sourceTree = "<group>"; };
+		F442FBF621D5C158005088F7 /* UserEntity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserEntity.h; sourceTree = "<group>"; };
+		F442FBF721D5C158005088F7 /* UserEntity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserEntity.m; sourceTree = "<group>"; };
+		F442FBFD21D5DC67005088F7 /* ECUSTEditHouseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ECUSTEditHouseViewController.h; sourceTree = "<group>"; };
+		F442FBFE21D5DC67005088F7 /* ECUSTEditHouseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ECUSTEditHouseViewController.m; sourceTree = "<group>"; };
+		F442FC0021D60546005088F7 /* DiskEntity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiskEntity.h; sourceTree = "<group>"; };
+		F442FC0121D60546005088F7 /* DiskEntity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiskEntity.m; sourceTree = "<group>"; };
+		F442FC0B21D606C9005088F7 /* ECUSTSellHouseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ECUSTSellHouseViewController.h; sourceTree = "<group>"; };
+		F442FC0C21D606C9005088F7 /* ECUSTSellHouseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ECUSTSellHouseViewController.m; sourceTree = "<group>"; };
+		F442FC0E21D60E69005088F7 /* ECUSTSellDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ECUSTSellDetailViewController.h; sourceTree = "<group>"; };
+		F442FC0F21D60E69005088F7 /* ECUSTSellDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ECUSTSellDetailViewController.m; sourceTree = "<group>"; };
+		F450169321D354C10064BA9F /* house-system.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "house-system.app"; path = "/Users/dddwj/XcodeProjects/house-system/build/Debug-iphoneos/house-system.app"; sourceTree = "<absolute>"; };
+		F450169621D354C10064BA9F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		F450169721D354C10064BA9F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		F450169D21D354C10064BA9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F450169F21D354C10064BA9F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F45016A421D354C10064BA9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F45016A521D354C10064BA9F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F45016AB21D354C10064BA9F /* house-systemTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "house-systemTests.xctest"; path = "/Users/dddwj/XcodeProjects/house-system/build/Debug-iphoneos/house-systemTests.xctest"; sourceTree = "<absolute>"; };
+		F45016AF21D354C10064BA9F /* house_systemTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = house_systemTests.m; sourceTree = "<group>"; };
+		F45016B121D354C10064BA9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F45016B621D354C10064BA9F /* house-systemUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "house-systemUITests.xctest"; path = "/Users/dddwj/XcodeProjects/house-system/build/Debug-iphoneos/house-systemUITests.xctest"; sourceTree = "<absolute>"; };
+		F45016BA21D354C10064BA9F /* house_systemUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = house_systemUITests.m; sourceTree = "<group>"; };
+		F45016BC21D354C10064BA9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F450169021D354C10064BA9F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F45016A821D354C10064BA9F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F45016B321D354C10064BA9F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F40E874621D527F700034C6C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F40E874321D5275A00034C6C /* HouseItem.h */,
+				F40E874421D5275A00034C6C /* HouseItem.m */,
+				F442FBF621D5C158005088F7 /* UserEntity.h */,
+				F442FBF721D5C158005088F7 /* UserEntity.m */,
+				F442FC0021D60546005088F7 /* DiskEntity.h */,
+				F442FC0121D60546005088F7 /* DiskEntity.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F40E874721D53A3600034C6C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F40E874821D53A5100034C6C /* LoginVC */,
+				F40E874921D53A6D00034C6C /* mainVC */,
+				F40E874A21D53A8800034C6C /* SearchHouseVC */,
+				F40E874B21D53A9900034C6C /* HouseResultVC */,
+				F442FBFC21D5CA7D005088F7 /* EditHouseVC */,
+				F442FC0721D60641005088F7 /* SellHouseVC */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		F40E874821D53A5100034C6C /* LoginVC */ = {
+			isa = PBXGroup;
+			children = (
+				F4041F6321D3B2A900350170 /* ECUSTLoginViewController.h */,
+				F4041F6421D3B2A900350170 /* ECUSTLoginViewController.m */,
+			);
+			path = LoginVC;
+			sourceTree = "<group>";
+		};
+		F40E874921D53A6D00034C6C /* mainVC */ = {
+			isa = PBXGroup;
+			children = (
+				F40E875021D55E6B00034C6C /* ECUSTMainViewController.h */,
+				F40E875121D55E6B00034C6C /* ECUSTMainViewController.m */,
+			);
+			path = mainVC;
+			sourceTree = "<group>";
+		};
+		F40E874A21D53A8800034C6C /* SearchHouseVC */ = {
+			isa = PBXGroup;
+			children = (
+				F400F58421D4836200A249FD /* ECUSTSearchHouseViewController.h */,
+				F400F58521D4836200A249FD /* ECUSTSearchHouseViewController.m */,
+			);
+			path = SearchHouseVC;
+			sourceTree = "<group>";
+		};
+		F40E874B21D53A9900034C6C /* HouseResultVC */ = {
+			isa = PBXGroup;
+			children = (
+				F400F58D21D4A2B100A249FD /* ECUSTHouseResultTableViewController.h */,
+				F400F58E21D4A2B100A249FD /* ECUSTHouseResultTableViewController.m */,
+			);
+			path = HouseResultVC;
+			sourceTree = "<group>";
+		};
+		F40E874C21D5581B00034C6C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F450169C21D354C10064BA9F /* Main.storyboard */,
+				F40E874D21D5582100034C6C /* pics */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F40E874D21D5582100034C6C /* pics */ = {
+			isa = PBXGroup;
+			children = (
+				F40E874E21D5582C00034C6C /* house.jpg */,
+			);
+			path = pics;
+			sourceTree = "<group>";
+		};
+		F442FBFC21D5CA7D005088F7 /* EditHouseVC */ = {
+			isa = PBXGroup;
+			children = (
+				F442FBFD21D5DC67005088F7 /* ECUSTEditHouseViewController.h */,
+				F442FBFE21D5DC67005088F7 /* ECUSTEditHouseViewController.m */,
+			);
+			path = EditHouseVC;
+			sourceTree = "<group>";
+		};
+		F442FC0721D60641005088F7 /* SellHouseVC */ = {
+			isa = PBXGroup;
+			children = (
+				F442FC0B21D606C9005088F7 /* ECUSTSellHouseViewController.h */,
+				F442FC0C21D606C9005088F7 /* ECUSTSellHouseViewController.m */,
+				F442FC0E21D60E69005088F7 /* ECUSTSellDetailViewController.h */,
+				F442FC0F21D60E69005088F7 /* ECUSTSellDetailViewController.m */,
+			);
+			path = SellHouseVC;
+			sourceTree = "<group>";
+		};
+		F450168A21D354C10064BA9F = {
+			isa = PBXGroup;
+			children = (
+				F450169521D354C10064BA9F /* house-system */,
+				F45016AE21D354C10064BA9F /* house-systemTests */,
+				F45016B921D354C10064BA9F /* house-systemUITests */,
+			);
+			sourceTree = "<group>";
+		};
+		F450169521D354C10064BA9F /* house-system */ = {
+			isa = PBXGroup;
+			children = (
+				F450169621D354C10064BA9F /* AppDelegate.h */,
+				F450169721D354C10064BA9F /* AppDelegate.m */,
+				F40E874C21D5581B00034C6C /* View */,
+				F40E874721D53A3600034C6C /* Controller */,
+				F40E874621D527F700034C6C /* Model */,
+				F450169F21D354C10064BA9F /* Assets.xcassets */,
+				F45016A421D354C10064BA9F /* Info.plist */,
+				F45016A521D354C10064BA9F /* main.m */,
+			);
+			path = "house-system";
+			sourceTree = "<group>";
+		};
+		F45016AE21D354C10064BA9F /* house-systemTests */ = {
+			isa = PBXGroup;
+			children = (
+				F45016AF21D354C10064BA9F /* house_systemTests.m */,
+				F45016B121D354C10064BA9F /* Info.plist */,
+			);
+			path = "house-systemTests";
+			sourceTree = "<group>";
+		};
+		F45016B921D354C10064BA9F /* house-systemUITests */ = {
+			isa = PBXGroup;
+			children = (
+				F45016BA21D354C10064BA9F /* house_systemUITests.m */,
+				F45016BC21D354C10064BA9F /* Info.plist */,
+			);
+			path = "house-systemUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F450169221D354C10064BA9F /* house-system */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F45016BF21D354C10064BA9F /* Build configuration list for PBXNativeTarget "house-system" */;
+			buildPhases = (
+				F450168F21D354C10064BA9F /* Sources */,
+				F450169021D354C10064BA9F /* Frameworks */,
+				F450169121D354C10064BA9F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "house-system";
+			productName = "house-system";
+			productReference = F450169321D354C10064BA9F /* house-system.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F45016AA21D354C10064BA9F /* house-systemTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F45016C221D354C10064BA9F /* Build configuration list for PBXNativeTarget "house-systemTests" */;
+			buildPhases = (
+				F45016A721D354C10064BA9F /* Sources */,
+				F45016A821D354C10064BA9F /* Frameworks */,
+				F45016A921D354C10064BA9F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F45016AD21D354C10064BA9F /* PBXTargetDependency */,
+			);
+			name = "house-systemTests";
+			productName = "house-systemTests";
+			productReference = F45016AB21D354C10064BA9F /* house-systemTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F45016B521D354C10064BA9F /* house-systemUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F45016C521D354C10064BA9F /* Build configuration list for PBXNativeTarget "house-systemUITests" */;
+			buildPhases = (
+				F45016B221D354C10064BA9F /* Sources */,
+				F45016B321D354C10064BA9F /* Frameworks */,
+				F45016B421D354C10064BA9F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F45016B821D354C10064BA9F /* PBXTargetDependency */,
+			);
+			name = "house-systemUITests";
+			productName = "house-systemUITests";
+			productReference = F45016B621D354C10064BA9F /* house-systemUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F450168B21D354C10064BA9F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = ECUST;
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = "董文杰";
+				TargetAttributes = {
+					F450169221D354C10064BA9F = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					F45016AA21D354C10064BA9F = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = F450169221D354C10064BA9F;
+					};
+					F45016B521D354C10064BA9F = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = F450169221D354C10064BA9F;
+					};
+				};
+			};
+			buildConfigurationList = F450168E21D354C10064BA9F /* Build configuration list for PBXProject "house-system" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F450168A21D354C10064BA9F;
+			productRefGroup = F450168A21D354C10064BA9F;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F450169221D354C10064BA9F /* house-system */,
+				F45016AA21D354C10064BA9F /* house-systemTests */,
+				F45016B521D354C10064BA9F /* house-systemUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F450169121D354C10064BA9F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F45016A021D354C10064BA9F /* Assets.xcassets in Resources */,
+				F450169E21D354C10064BA9F /* Main.storyboard in Resources */,
+				F40E874F21D5582C00034C6C /* house.jpg in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F45016A921D354C10064BA9F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F45016B421D354C10064BA9F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F450168F21D354C10064BA9F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F442FBFF21D5DC67005088F7 /* ECUSTEditHouseViewController.m in Sources */,
+				F400F58621D4836200A249FD /* ECUSTSearchHouseViewController.m in Sources */,
+				F400F58F21D4A2B100A249FD /* ECUSTHouseResultTableViewController.m in Sources */,
+				F442FC0D21D606C9005088F7 /* ECUSTSellHouseViewController.m in Sources */,
+				F442FC1021D60E69005088F7 /* ECUSTSellDetailViewController.m in Sources */,
+				F442FC0221D60546005088F7 /* DiskEntity.m in Sources */,
+				F4041F6521D3B2A900350170 /* ECUSTLoginViewController.m in Sources */,
+				F442FBF821D5C158005088F7 /* UserEntity.m in Sources */,
+				F45016A621D354C10064BA9F /* main.m in Sources */,
+				F40E875221D55E6B00034C6C /* ECUSTMainViewController.m in Sources */,
+				F40E874521D5275A00034C6C /* HouseItem.m in Sources */,
+				F450169821D354C10064BA9F /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F45016A721D354C10064BA9F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F45016B021D354C10064BA9F /* house_systemTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F45016B221D354C10064BA9F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F45016BB21D354C10064BA9F /* house_systemUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F45016AD21D354C10064BA9F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F450169221D354C10064BA9F /* house-system */;
+			targetProxy = F45016AC21D354C10064BA9F /* PBXContainerItemProxy */;
+		};
+		F45016B821D354C10064BA9F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F450169221D354C10064BA9F /* house-system */;
+			targetProxy = F45016B721D354C10064BA9F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F450169C21D354C10064BA9F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F450169D21D354C10064BA9F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F45016BD21D354C10064BA9F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		F45016BE21D354C10064BA9F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F45016C021D354C10064BA9F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9V6Z58HWDM;
+				INFOPLIST_FILE = "house-system/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ecust.house-system";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F45016C121D354C10064BA9F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9V6Z58HWDM;
+				INFOPLIST_FILE = "house-system/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ecust.house-system";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		F45016C321D354C10064BA9F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "house-systemTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ecust.house-systemTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/house-system.app/house-system";
+			};
+			name = Debug;
+		};
+		F45016C421D354C10064BA9F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "house-systemTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ecust.house-systemTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/house-system.app/house-system";
+			};
+			name = Release;
+		};
+		F45016C621D354C10064BA9F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "house-systemUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ecust.house-systemUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "house-system";
+			};
+			name = Debug;
+		};
+		F45016C721D354C10064BA9F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "house-systemUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ecust.house-systemUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "house-system";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F450168E21D354C10064BA9F /* Build configuration list for PBXProject "house-system" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F45016BD21D354C10064BA9F /* Debug */,
+				F45016BE21D354C10064BA9F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F45016BF21D354C10064BA9F /* Build configuration list for PBXNativeTarget "house-system" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F45016C021D354C10064BA9F /* Debug */,
+				F45016C121D354C10064BA9F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F45016C221D354C10064BA9F /* Build configuration list for PBXNativeTarget "house-systemTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F45016C321D354C10064BA9F /* Debug */,
+				F45016C421D354C10064BA9F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F45016C521D354C10064BA9F /* Build configuration list for PBXNativeTarget "house-systemUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F45016C621D354C10064BA9F /* Debug */,
+				F45016C721D354C10064BA9F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F450168B21D354C10064BA9F /* Project object */;
+}

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="cn-Zh" dir="ltr" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>二手房交易平台</title>
+    <script src="vue.js" charset="utf-8"></script>
+    <script src="node_modules/jquery/dist/jquery.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.css">
+    <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+</head>
+<style type="text/css">
+    fieldset {
+        padding: .35em .625em .75em;
+        margin: 0 2px;
+        border: 1px solid silver
+    }
+
+    legend {
+        padding: .5em;
+        border: 0;
+        width: auto
+    }
+</style>
+
+
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="index.html">二手房交易平台</a>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="BuyDisk.html" id="navbarDropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="fa fa-search"></span>
+                    我要买房!
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="BuyDisk.html">
+                        <span class="fa fa-search-plus"></span>
+                        直接搜小区
+                    </a>
+                    <a class="dropdown-item" href="BuyArea.html">
+                        <span class="fa fa-search-minus"></span>
+                        按区域找房
+                    </a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="Sale.html">
+                    <i class="fa fa-gavel"></i>我要卖房!
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fa fa-info"></i>
+                    帮助
+                </a>
+            </li>
+            <li class="nav-item">
+                <a id="userLabel" class="nav-link" href="index.html">
+                    <i class="fa fa-user-circle"></i>
+                    登录
+                </a>
+            </li>
+            <script>
+
+                function userControl() {
+                    let userName = sessionStorage.getItem('userName');
+                    if (userName == null) {
+                        console.log("login first");
+                    }
+                    else {
+                        // alert(userName);
+                        var label = $("#userLabel");
+                        label.html("<i class=\"fa fa-user\"></i>" + userName);
+                        label[0].setAttribute("data-toggle", "modal");
+                        label[0].setAttribute("data-target", "#resultModal");
+                    }
+                }
+
+                userControl();
+
+            </script>
+
+            <!--<li v-if="auth" class="nav-item">-->
+            <!--<a class="nav-link" onclick="alert('欢迎使用！');">-->
+            <!--<i class="fa fa-user-circle"></i>-->
+            <!--{{ userName }}-->
+            <!--</a>-->
+            <!--<li v-else class="nav-item">-->
+            <!--<a class="nav-link" data-toggle="modal" data-target="#loginModal">-->
+            <!--<i class="fa fa-user-circle"></i>-->
+            <!--登录-->
+            <!--</a>-->
+            <!--</li>-->
+        </ul>
+    </div>
+</nav>
+
+<script type="text/javascript">
+
+
+    function userControl() {
+        let userName = sessionStorage.getItem('userName');
+        if (userName == null) {
+            alert("你没有权限，登录后才能查看你的挂牌房源！");
+            window.location = "index.html";
+        }
+        else {
+            // alert("欢迎你来管理挂牌房源，" + userName);
+            var label = $("#userLabel");
+            label.html("<i class=\"fa fa-user\"></i>" + userName); // jquery用法
+        }
+    }
+
+    userControl();
+</script>
+<div class="container-fluid" id='app'>
+    <div id="userID" class="h2">用户账号:</div>
+    <button class="btn btn-info" v-on:click="selectMyHouses">查询我的挂牌房源</button>
+    <button class="btn btn-success" id="AlertNone" style="display: none;" onclick="window.location.href='Sale.html';">去挂牌！</button>
+    <p v-bind:class="{'alert':errorOccur, 'alert-danger': errorOccur}">{{errorMessage}}</p>
+    <div class="alert alert-success" v-show="successUpdate" >更改成功了！欢迎你再次挂牌！</div>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+            <!-- <th hidden="true">ID</th> -->
+            <th>唯一标识号</th>
+            <th>房源地址</th>
+            <th>小区名称</th>
+            <th>面积</th>
+            <th>朝向</th>
+            <th>总价(万)</th>
+            <th>挂牌日期</th>
+            <th>在售情况</th>
+            <th>操作</th>
+            </thead>
+            <tbody v-if="datas.length > 0" v-for="r in datas">
+            <tr>
+                 <td v-text="r.id"></td>
+                <td v-text="r.address"></td>
+                <td v-text="r.diskName"></td>
+                <td v-text="r.acreage"></td>
+                <td v-text="r.direction"></td>
+                <td v-text="r.total/10000"></td>
+                <td v-text="r.regDate"></td>
+                <td v-text="r.isForSale"></td>
+                <td>
+                    <button class="btn btn-info" v-on:click="controlHouse_takedown">下架</button>
+                    <button class="btn btn-info" v-on:click="controlHouse_puton">上架</button>
+                    <button class="btn btn-secondary" data-toggle="modal" data-target="#editModal" onclick="editHouse_show(event)">修改</button>
+                    <button class="btn btn-danger" v-on:click="controlHouse_delete">删除房源</button>
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div id="editModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-title">
+                <h1 class="text-center">修改信息</h1>
+            </div>
+            <div class="modal-body">
+                <form class="form-group" onsubmit="return false;">
+                    <div class="form-group">
+                        <label>唯一标识号</label>
+                        <input id="houseID_form" class="form-control" type="text" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>房源地址</label>
+                        <input id="address_form" class="form-control" type="text" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label>小区名称</label>
+                        <input id="diskName_form" class="form-control" type="text" placeholder="" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>面积</label>
+                        <input id="acreage_form" class="form-control" type="text" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label>朝向</label>
+                        <input id="direction_form" class="form-control" type="text" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label>总价</label>
+                        <input id="total_form" class="form-control" type="text" placeholder="">
+                    </div>
+                    <div class="text-right">
+                        <button class="btn btn-primary" onclick="editHouse(event)">修改</button>
+                        <button class="btn btn-danger" id="dismiss-edit" data-dismiss="modal">取消</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function onload() {
+        let value = document.cookie.split(";")[0].split("=")[1];
+        $("#userID")[0].innerText = "用户账号: " + value + ", " + sessionStorage.getItem('userName');
+    }
+
+    onload();
+
+    function editHouse_show(event){
+        let userID = document.cookie.split(";")[0].split("=")[1];
+        let line = event.target.parentElement.parentElement;
+        let houseID_li = line.firstChild;
+        $("#houseID_form")[0].value = houseID_li.innerText;
+        $("#address_form")[0].value = line.children[1].textContent;
+        $("#diskName_form")[0].value = line.children[2].innerText;
+        $("#acreage_form")[0].value = line.children[3].innerText;
+        $("#direction_form")[0].value = line.children[4].innerText;
+        $("#total_form")[0].value = line.children[5].innerText;
+    }
+
+    function editHouse(event){
+        var json = {
+            'userID': document.cookie.split(";")[0].split("=")[1],
+            'houseID': $("#houseID_form")[0].value,
+            'address': $("#address_form")[0].value,
+            'diskName': $("#diskName_form")[0].value,
+            'acreage': $("#acreage_form")[0].value,
+            'direction': $("#direction_form")[0].value,
+            'total': $("#total_form")[0].value
+        };
+        console.log(json);
+        $.ajax({
+            url: "http://localhost:8090/controlHouse/update",
+            dataType: "json",
+            type: "post",
+            data: JSON.stringify(json),
+            contentType: "application/json",
+            success: function (response) {
+                if(response['data'])
+                {
+                    alert("修改成功！请重新查询。");
+                    $("#dismiss-edit")[0].click();
+                }
+                else{
+                    alert("修改失败！" + response);
+                }
+            },
+            error: function (res) {
+                alert("服务器错误: " + JSON.stringify(res));
+            }
+        })
+    }
+
+</script>
+
+
+<script type="text/javascript">
+    new Vue({
+        el: '#app',
+        data: {
+            diskName: "",
+            address: "",
+            id: "",
+            total: "",
+            datas: [],
+            acreage: 0,
+            errorMessage: "",
+            successUpdate: false,
+            errorOccur: false,
+            couldInsert: false,
+            direction: "",
+        },
+        methods: {
+            controlHouse: function(event,api){
+                let userID = document.cookie.split(";")[0].split("=")[1];
+                let line = event.target.parentElement.parentElement;
+                let houseID = line.firstChild.innerText;
+
+                var json = {
+                    'userID': userID,
+                    'houseID': houseID
+                };
+                var vm = this;
+                $.ajax({
+                    url: api,
+                    dataType: "json",
+                    type: "post",
+                    data: JSON.stringify(json),
+                    contentType: "application/json",
+                    success: function (response) {
+                        if(response['msg'] === 'ok')
+                            vm.successUpdate = true;
+                        else{
+                            vm.errorOccur = true;
+                            vm.errorMessage = "遇到了问题" + JSON.stringify(response);
+                        }
+                    },
+                    error: function (res) {
+                        vm.errorOccur = true;
+                        vm.errorMessage = "服务器错误: " + JSON.stringify(res);
+                    }
+                }).then(function() {
+                    vm.selectMyHouses();
+                });
+            },
+
+            controlHouse_takedown: function(event){
+                let api = "http://localhost:8090/controlHouse/takedown";
+                this.controlHouse(event,api);
+            },
+
+            controlHouse_puton: function(event){
+                let api = "http://localhost:8090/controlHouse/puton";
+                this.controlHouse(event,api);
+            },
+
+            controlHouse_delete: function(event){
+                let api = "http://localhost:8090/controlHouse/delete";
+                this.controlHouse(event,api);
+            },
+
+            selectMyHouses: function(event) {
+                this.datas = [];
+                let userID = document.cookie.split(";")[0].split("=")[1];
+                var json = {
+                    'userID': userID,
+                };
+
+                var vm = this;
+                $.ajax({
+                    url: "http://localhost:8090/selectUserHouses",
+                    dataType: "json",
+                    type: "post",
+                    data: JSON.stringify(json),
+                    contentType: "application/json",
+                    success: function (response) {
+                        if(response.length === 0)
+                        {
+                            alert("你还没有挂牌的房子");
+                            $("#AlertNone")[0].style.display = "";
+                        }
+                        else{
+                            for(let i = 0; i<response.length;i++){
+                                vm.datas.push(response[i]);
+                            }
+                        }
+                    },
+                    error: function (res) {
+                        vm.errorOccur = true;
+                        vm.errorMessage = "服务器错误: " + JSON.stringify(res);
+                    }
+                });
+            },
+
+
+
+
+        },
+        watch: {
+            datas: function (val, oldval) {
+                if (this.datas.length > 0) {
+                    this.couldInsert = true;
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>
