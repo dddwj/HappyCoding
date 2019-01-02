@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EcustMap</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="jquery/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <link href="css/mycss.css" rel="stylesheet">
+
+</head>
+
+
+<body>
+<nav class="site-header sticky-top py-1">
+    <div class="container d-flex flex-column flex-md-row justify-content-between">
+        <a class="py-2" href="index.html">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="d-block mx-auto"><circle cx="12" cy="12" r="10"></circle><line x1="14.31" y1="8" x2="20.05" y2="17.94"></line><line x1="9.69" y1="8" x2="21.17" y2="8"></line><line x1="7.38" y1="12" x2="13.12" y2="2.06"></line><line x1="9.69" y1="16" x2="3.95" y2="6.06"></line><line x1="14.31" y1="16" x2="2.83" y2="16"></line><line x1="16.62" y1="12" x2="10.88" y2="21.94"></line></svg>
+        </a>
+        <a class="py-2 d-none d-md-inline-block" href="index.html">计算路线</a>
+        <a class="py-2 d-none d-md-inline-block" href="#">徐汇校区</a>
+        <a class="py-2 d-none d-md-inline-block" href="http://www.ecust.edu.cn">奉贤校区</a>
+        <a class="py-2 d-none d-md-inline-block" href="http://144.168.62.45">关于我</a>
+
+    </div>
+</nav>
+
+<form name="form1" method="post">
+
+        <div class="row justify-content-center">
+
+        </div>
+        <div class="alert alert-secondary align-content-center text-center">
+            <div class="h1">ECUST Navigator</div>
+        </div>
+
+        <div class=" row justify-content-center">
+            <script language="javascript">
+                function path(){
+                    document.form1.action="GetPoint.php";
+                    document.form1.submit();
+                }
+                function desc(){
+                    document.form1.action="desc.php";
+                    document.form1.submit();
+                }
+            </script>
+            <button class="btn btn-primary" name="shortestpath" type="submit"  onclick="path();" > 请计算最短路线！</button>
+            <button class="btn btn-info ml-3 " type="submit" onclick="desc();" >请介绍景点！</button>
+        </div>
+    <br>
+
+
+
+
+        <div class="container-fluid" style="background-image: url('img/map.JPG'); width: 1100px; height: 670px;" >
+        <div  style="height: 90px;"></div>
+        <div  style="height: 40px;">
+            <input type="checkbox" name="checkbox[0]" style="margin-left: 350px;"> </input>
+            <input type="checkbox" name="checkbox[1]" style="margin-left: 200px;"> </input>
+        </div>
+        <div style="height: 60px;">
+            <input type="checkbox" name="checkbox[2]" style="margin-left: 700px;"> </input>
+            <input type="checkbox" name="checkbox[3]" style="margin-left: 200px;"> </input>
+        </div>
+        <div style="height: 60px;">
+            <input type="checkbox" name="checkbox[4]" style="margin-left: 730px;"> </input>
+            <input type="checkbox" name="checkbox[5]" style="margin-left: 950px;"> </input>
+
+        </div>
+        <div style="height: 95px;">
+            <input type="checkbox" name="checkbox[6]" style="margin-left: 500px;"> </input>
+        </div>
+        <div style="height: 30px;">
+            <input type="checkbox" name="checkbox[7]" style="margin-left: 600px;"> </input>
+            <input type="checkbox" name="checkbox[8]" style="margin-left: 50px;"> </input>
+            <input type="checkbox" name="checkbox[9]" style="margin-left: 170px;"> </input>
+            <input type="checkbox" name="checkbox[10]" style="margin-left: 80px;"> </input>
+        </div>
+        <div style="height: 170px;">
+            <input type="checkbox" name="checkbox[11]" style="margin-left: 300px;"> </input>
+            <input type="checkbox" name="checkbox[12]" style="margin-left: 450px;"> </input>
+        </div>
+        <div style="height: 50px;">
+            <input type="checkbox" name="checkbox[13]" style="margin-left: 470px;"> </input>
+            <input type="checkbox" name="checkbox[14]" style="margin-left: 250px;"> </input>
+        </div>
+        <div style="height: 15px;">
+            <input type="checkbox" name="checkbox[15]" style="margin-left: 840px;"> </input>
+        </div>
+
+    </div>
+
+</form>
+
+
+<div class="row justify-content-center footer-link my-5">
+    <p>Copyright © 2018 董文杰  <a href="http://144.168.62.45" target="_blank" title="Personal Website">👉个人主页👈</a> </p>
+</div>
+
+</body>
+</html>
