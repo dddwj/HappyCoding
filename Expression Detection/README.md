@@ -1,4 +1,4 @@
-# 实时视频图像表情识别
+# 实时视频图像表情识别 Realtime Facial Expression Recognition System
 
 ### 功能与技术
 
